@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "df755d19-2bff-46d4-913f-2926ab572e17",
+		"name": "Swagger Petstore Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "15a413f2-e626-46a9-bf21-a0317c2cb3d4",
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b4833bc-9c53-47c1-bcb9-e8adf2381206",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml, application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 0,\n  \"username\": \"BiswajitDas\",\n  \"firstName\": \"Biswajit\",\n  \"lastName\": \"Das\",\n  \"email\": \"Biswajit@email.com\",\n  \"password\": \"passwrd\",\n  \"phone\": \"818-668-7065\",\n  \"userStatus\": 1\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user"
+					]
+				},
+				"description": "This can only be done by the logged in user."
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "39303c82-66db-44a6-9c43-eb0945884950",
+			"name": "Get user by user name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6223287b-8170-41cb-8677-73e722495426",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstName).to.eql(\"Biswajit\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/BiswajitDas?",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"BiswajitDas"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "BiswajitDas",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
